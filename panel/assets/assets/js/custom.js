@@ -21,7 +21,7 @@ $(document).ready(function () {
         });
 
 
-    });
+    }); 
 
     $(".isActive").change(function () {
         
