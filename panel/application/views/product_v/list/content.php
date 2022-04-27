@@ -38,6 +38,7 @@
                                 <td><?php echo $item->rank; ?></td>
                                 <td>
                                     <input
+                                        data-url="<?php echo base_url("product/isActiveSetter/$item->id"); ?>" 
                                         class="isActive"
                                         type="checkbox"
                                         data-switchery

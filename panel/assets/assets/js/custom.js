@@ -23,8 +23,20 @@ $(document).ready(function () {
 
     });
 
-    $(".isActive").click(function () {
+    $(".isActive").change(function () {
         
+        var $data = $(this).prop("checked");
+        var $data_url = $(this).data("url");
+
+        if (typeof $data !== "undefined" && typeof $data_url !== "undefined") {
+            $.post($data_url, {data : $data}, function(response){
+                swal({
+                    title:'Tebrikler.',
+                    text: 'Ürün güncellemesi tamamlanmıştır.',
+                    type: 'success'
+                });
+            });
+        }
     });
 
 });
