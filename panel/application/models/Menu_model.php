@@ -1,9 +1,9 @@
-<?php
+<?php 
 
-class Product_model extends CI_Model
+class Menu_model extends CI_Model
 {
-
-    public $tableName = "products";
+    public $tableName = "menu";
+    public $subTitleName = "subMenu";
 
     public function __construct()
     {
@@ -18,7 +18,7 @@ class Product_model extends CI_Model
     /** Tüm Kayıtları bana getirecek olan metod.. */
     public function get_all($where = array())
     {
-        return $this->db->order_by('rank', 'asc')->where($where)->get($this->tableName)->result();
+        return $this->db->where($where)->get($this->tableName)->result();
     }
 
     public function add($data = array())
@@ -36,3 +36,6 @@ class Product_model extends CI_Model
         return $this->db->where($where)->delete($this->tableName);
     }
 }
+
+
+?>
