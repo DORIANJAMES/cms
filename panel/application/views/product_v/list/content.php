@@ -20,8 +20,8 @@
                     <thead>
                         <th><i class="fa fa-reorder"></i></th>
                         <th>#id</th>
-                        <th>url</th>
                         <th>Başlık</th>
+                        <th>url</th>
                         <th>Sırası</th>
                         <th>Açıklama</th>
                         <th>Durumu</th>
@@ -34,8 +34,8 @@
                             <tr id="ord-<?php echo $item->id; ?>">
                                 <td><i class="fa fa-reorder"></i></td>
                                 <td>#<?php echo $item->id; ?></td>
-                                <td><?php echo $item->url; ?></td>
                                 <td><?php echo $item->title; ?></td>
+                                <td><?php echo $item->url; ?></td>
                                 <td><?php echo $item->rank; ?></td>
                                 <td><?php echo $item->description; ?></td>
                                 <td>
