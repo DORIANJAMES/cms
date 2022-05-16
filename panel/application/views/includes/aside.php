@@ -51,13 +51,19 @@
 
     <div class="menubar-scroll">
         <div class="menubar-scroll-inner">
-            <ul class="app-menu">
-
+            <ul class="app-menu sortable-aside" data-url="<?php echo base_url("menu/asideSetter");?>">
 
                 <li>
-                    <a href="javascript:void(0)">
+                    <a href="<?php echo base_url();?>">
                         <i class="menu-icon zmdi zmdi-view-dashboard zmdi-hc-lg"></i>
                         <span class="menu-text">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?php echo base_url("menu"); ?>">
+                        <i class="menu-icon zmdi zmdi-view-dashboard zmdi-hc-lg"></i>
+                        <span class="menu-text">Menu</span>
                     </a>
                 </li>
 
@@ -68,7 +74,7 @@
                     </a>
                 </li>
 
-                <li class="has-submenu">
+                <li class="has-submenu" id="ord-<?php  ?>">
                     <a href="javascript:void(0)" class="submenu-toggle">
                         <i class="menu-icon zmdi zmdi-apps zmdi-hc-lg"></i>
                         <span class="menu-text">Galeriler</span>

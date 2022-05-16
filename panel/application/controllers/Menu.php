@@ -1,16 +1,14 @@
-<?php
-
-class Product extends CI_Controller
+<?php 
+class Menu extends CI_Controller
 {
     public $viewFolder = "";
 
     public function __construct()
     {
-
         parent::__construct();
 
-        $this->viewFolder = "product_v";
-        $this->load->model("product_model");
+        $this->viewFolder = "aside";
+        $this->load->model("menu_model");
     }
 
     public function index()
@@ -232,20 +230,38 @@ class Product extends CI_Controller
         $items = $order["ord"];
 
         foreach ($items as $rank => $id) {
-            $isOk = $this->product_model->update(
+            echo $id;
+            $this->product_model->update(
                 array(
-                    "id"        => $id,
-                    "rank !="   => $rank
+                    "id" => $id
                 ),
                 array(
-                    "rank"      => $rank
+                    "rank" => $rank
                 )
             );
-            if ($isOk) {
-                echo $id;
-            } else {
-                echo "İşleminizde hata oluştu.";
-            }
+        }
+    }
+
+    public function asideSetter()
+    {
+        
+        $data = $this->input->post("data");
+        parse_str($data, $order);
+        echo $order;
+        $items = $order["ord"];
+
+        foreach ($items as $rank => $id) {
+            echo $id;
+            $this->menu_model->update(
+                array(
+                    "id" => $id
+                ),
+                array(
+                    "rank" => $rank
+                )
+            );
         }
     }
 }
+
+?>
