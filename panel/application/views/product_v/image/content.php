@@ -27,21 +27,21 @@
     <div class="col-md-12">
         <div class="widget">
             <div class="widget-body">
-                <table class="table table-hover">
+                <table class="table table-hover table-bordered">
                     <thead>
-                        <th>#id</th>
-                        <th>Görsel</th>
-                        <th>Resim Adı</th>
-                        <th>Durumu</th>
-                        <th>İşlem</th>
+                        <th class="w100 text-center">#id</th>
+                        <th class="w100 text-center">Görsel</th>
+                        <th class="text-center">Resim Adı</th>
+                        <th class="w100 text-center">Durumu</th>
+                        <th class="w100 text-center">İşlem</th>
 
                     </thead>
                     <tbody>
                         <tr>
-                            <td>#1</td>
-                            <td><img width="30" class="img-responsive" src="https://yt3.ggpht.com/ytc/AKedOLSj2FK7hgQqQZh3yP73icIUBHrElm1blSMpOsHV=s176-c-k-c0x00ffffff-no-rj" alt=""></td>
-                            <td>deneme-urunu.jpeg</td>
-                            <td>
+                            <td class="text-center">#1</td>
+                            <td class="text-center"><img width="30" class="img-responsive" src="https://yt3.ggpht.com/ytc/AKedOLSj2FK7hgQqQZh3yP73icIUBHrElm1blSMpOsHV=s176-c-k-c0x00ffffff-no-rj" alt=""></td>
+                            <td class="text-center">deneme-urunu.jpeg</td>
+                            <td class="text-center">
                                 <input
                                     data-url="<?php echo base_url("product/isActiveSetter") ?>" 
                                     type="checkbox"
@@ -51,10 +51,10 @@
                                     <?php echo (true) ? "checked":"";?>
                                 >
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <button 
                                     data-url="<?php echo base_url("product/delete/"); ?>" 
-                                    class="btn btn-sm btn-danger btn-outline remove-btn">
+                                    class="btn btn-sm btn-danger btn-outline remove-btn btn-block">
                                     <i class="fa fa-trash"></i> Sil
                                 </button>
                             </td>
