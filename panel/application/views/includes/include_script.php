@@ -20,4 +20,5 @@
 
 <script src="<?php echo base_url("assets"); ?>/assets/js/sweetalert2.all.js"></script>
 
-<script src="<?php echo base_url("assets"); ?>/assets/js/custom.js"></script>
+<script src="<?php echo base_url("assets"); ?>/assets/js/custom.js"></script>   
+<script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
