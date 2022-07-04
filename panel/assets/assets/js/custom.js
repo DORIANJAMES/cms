@@ -73,6 +73,12 @@ $(document).ready(function () {
         });
     });
 
+    $(".hovercolor").mouseover(function(){
+        $(this).css("color","grey");
+    }).mouseout(function(){
+        $(this).css("color","")
+    });
+
 
 
 });
