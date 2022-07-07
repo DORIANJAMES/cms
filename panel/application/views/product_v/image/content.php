@@ -7,7 +7,7 @@
     <div class="col-md-12">
         <div class="widget">
             <div class="widget-body">
-                <form action="<?php echo base_url("product/image_upload/".$item->id); ?>" id="id_dropzone" enctype="multipart/form-data" data-parsley-validate class="dropzone" data-plugin="dropzone" data-options="{ url: '<?php echo base_url("product/image_upload/$item->id"); ?>'}">
+                <form action="<?php echo base_url("product/image_upload/".$item->id); ?>" id="id_dropzone" enctype="multipart/form-data" data-parsley-validate class="dropzone" data-plugin="dropzone" data-options="{ url: '<?php echo base_url("product/image_upload/".$item->id); ?>'}">
                     <div class="dz-message">
                         <h3 class="m-h-lg">Dosyalarınız bu alana sürükleyip bırakınız ya da tıklayarak seçim yapabilirsiniz.</h3>
                         <p class="m-b-lg text-muted">Bu alana bırakacağınız dosya türleri .png, .jpg, .jpeg, .tiff ya da .webp uzantılarından birisine sahip olmalıdır.</p>
