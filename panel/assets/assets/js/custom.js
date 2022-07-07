@@ -79,6 +79,10 @@ $(document).ready(function () {
         $(this).css("color","")
     });
 
+    var uploadSection = Dropzone.forElement("#id_dropzone");
 
+    uploadSection.on("complete", function(){
+       alert();
+    });
 
 });
