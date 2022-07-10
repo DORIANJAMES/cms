@@ -79,9 +79,17 @@ $(document).ready(function () {
         $(this).css("color","")
     });
 
-    var uploadSection = Dropzone.forElement("#id_dropzone");
+    var uploadSection = Dropzone.forElement("#dropzone");
 
     uploadSection.on("complete", function(){
+
+        //alert("Resim yükleme işlemi başarı ile gerçekleştirilmiştir...!");
+
+        var $data_url = $("#dropzone").attr("data-url");
+
+        $.post($data_url, {}, function($response){
+            $(".image_list_container").html($response)
+        });
 
     });
 
