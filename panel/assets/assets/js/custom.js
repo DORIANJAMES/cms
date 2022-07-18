@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 
 
-    $(".remove-btn").click(function () {
+    $(".image_list_container, .content-container").on("click", ".remove-btn", function () {
         var $data_url = $(this).data("url");
         swal({
             title: 'Emin misiniz?',
@@ -145,33 +145,30 @@ $(document).ready(function () {
     var uploadSection = Dropzone.forElement("#dropzone");
 
     uploadSection.on("complete", function(){
-        $("#dropzone").on("complete", "#dropzone", function(){
-            
-            var $data_url = $("#dropzone").attr("data-url");
 
-            $.post($data_url, {}, function($response){
-                $(".image_list_container").html($response);
+        var $data_url = $("#dropzone").attr("data-url");
 
-                // Switchery yüklemesi yapılıyor.
-                $('[data-switchery]').each(function (){
-                    var $this = $(this),
-                        color = $this.attr('data-color') || '#188ae2',
-                        jackColor = $this.attr('data-jackColor') || '#ffffff',
-                        size = $this .attr('data-size') || 'default'
+        $.post($data_url, {}, function($response){
+            $(".image_list_container").html($response);
 
-                    new Switchery(this, {
-                        color: color,
-                        size: size,
-                        jackColor: jackColor
-                    });
+            // Switchery yüklemesi yapılıyor.
+            $('[data-switchery]').each(function (){
+                var $this = $(this),
+                    color = $this.attr('data-color') || '#188ae2',
+                    jackColor = $this.attr('data-jackColor') || '#ffffff',
+                    size = $this .attr('data-size') || 'default'
+
+                new Switchery(this, {
+                    color: color,
+                    size: size,
+                    jackColor: jackColor
                 });
-
-                $(".sortable-aside").sortable();
-                $(".sortable").sortable();
-
             });
-        });
 
+            $(".sortable-aside").sortable();
+            $(".sortable").sortable();
+
+        });
     });
     // Dropzone üzerinde resim yükleme işlemi tamamladığında çalışacak olan kodların bitişi.
 
