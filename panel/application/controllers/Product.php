@@ -32,9 +32,7 @@ class Product extends CI_Controller
 
     public function new_form()
     {
-
         $viewData = new stdClass();
-
         /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
         $viewData->viewFolder = $this->viewFolder;
         $viewData->subViewFolder = "add";
@@ -248,7 +246,7 @@ class Product extends CI_Controller
             $viewData->item_images = $this->product_image_model->get_all(
                 array(
                     "product_id" => $parent_id
-                )
+                ),"rank ASC"
             );
 
             $render_html = $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/render_elements/image_list_v", $viewData, true);
@@ -292,7 +290,7 @@ class Product extends CI_Controller
             $viewData->item_images = $this->product_image_model->get_all(
                 array(
                     "product_id" => $parent_id
-                )
+                ), "rank ASC"
             );
 
             $render_html = $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/render_elements/image_list_v", $viewData, true);
@@ -308,6 +306,30 @@ class Product extends CI_Controller
 
         foreach ($items as $rank => $id) {
             $isOk = $this->product_model->update(
+                array(
+                    "id"        => $id,
+                    "rank !="   => $rank
+                ),
+                array(
+                    "rank"      => $rank
+                )
+            );
+            if ($isOk) {
+                echo $id;
+            } else {
+                echo "İşleminizde hata oluştu.";
+            }
+        }
+    }
+
+    public function imageRankSetter()
+    {
+        $data = $this->input->post("data");
+        parse_str($data, $order);
+        $items = $order["ord"];
+
+        foreach ($items as $rank => $id) {
+            $isOk = $this->product_image_model->update(
                 array(
                     "id"        => $id,
                     "rank !="   => $rank
@@ -340,7 +362,7 @@ class Product extends CI_Controller
         $viewData->item_images = $this->product_image_model->get_all(
             array(
                 "product_id" => $id
-            )
+            ), "rank ASC"
         );
 
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);

@@ -72,14 +72,12 @@ $(document).ready(function () {
                     });
                 });
 
-                swal({
-                    text: 'Ürün resmi aktive edilmiştir...',
-                    type: 'success'
-                });
+                $(".sortable-aside").sortable();
+                $(".sortable").sortable();
+
             });
         }
     });
-
 
     $(".image_list_container").on('change', '.isCover', function(){
        var $data  = $(this).prop("checked");
@@ -103,6 +101,9 @@ $(document).ready(function () {
                    });
                });
 
+               $(".sortable-aside").sortable();
+               $(".sortable").sortable();
+
                swal({
                   text: 'Kapak fotoğrafı güncellenmiştir...',
                   type: 'success'
@@ -111,11 +112,9 @@ $(document).ready(function () {
        }
     });
 
-    $(".sortable").on("sortupdate", function () {
+    $(".image_list_container, .content-container").on("sortupdate",'.sortable', function () {
         var $data = $(this).sortable("serialize");
         var $data_url = $(this).data("url");
-
-        
 
         $.post($data_url, {data: $data}, function (response) {
             swal({
@@ -143,11 +142,11 @@ $(document).ready(function () {
         $(this).css("color","")
     });
 
+
+    // Dropzone üzerinde resim yükleme işlemi tamamladığında çalışacak olan kodların başlangıcı.
     var uploadSection = Dropzone.forElement("#dropzone");
 
     uploadSection.on("complete", function(){
-
-
 
         var $data_url = $("#dropzone").attr("data-url");
 
@@ -168,7 +167,7 @@ $(document).ready(function () {
                 });
             });
         });
-
     });
+    // Dropzone üzerinde resim yükleme işlemi tamamladığında çalışacak olan kodların bitişi.
 
 });

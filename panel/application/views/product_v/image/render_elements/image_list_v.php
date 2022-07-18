@@ -7,18 +7,21 @@
 
         <table class="table table-hover table-bordered">
             <thead>
-            <th class="w100 text-center">#id</th>
-            <th class="w100 text-center">Görsel</th>
-            <th class="text-center">Resim Adı</th>
-            <th class="w100 text-center">Durumu</th>
-            <th class="w100 text-center">Kapak</th>
-            <th class="w100 text-center">İşlem</th>
-
+                <th><i class="fa fa-reorder"></i></th>
+                <th class="w100 text-center">#id</th>
+                <th class="w100 text-center">Görsel</th>
+                <th class="text-center">Resim Adı</th>
+                <th class="w100 text-center">Durumu</th>
+                <th class="w100 text-center">Kapak</th>
+                <th class="w100 text-center">İşlem</th>
             </thead>
-            <tbody>
+
+            <tbody class="sortable" data-url="<?php echo base_url("product/imageRankSetter"); ?> " >
 
             <?php foreach ($item_images as $image) { ?>
-                <tr>
+
+                <tr id="ord-<?php echo $image->id; ?> ">
+                    <td><i class="fa fa-reorder"></i></td>
                     <td class="text-center">#<?php echo $image->id ?> </td>
                     <td class="text-center"><img class="img-responsive img-circle w30" src="<?php echo base_url("uploads/{$viewFolder}/".$image->img_url) ?> " alt="<?php echo $image->img_url; ?> "></td>
                     <td class="text-center"><?php echo $image->img_url ?> </td>
