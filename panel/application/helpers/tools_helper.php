@@ -6,6 +6,15 @@ function convertToSEO($text){
     $convert = array("c", "c", "g", "g", "u", "u", "o", "o", "i", "i", "s", "s", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-");
 
     return strtolower(str_replace($turkce, $convert, $text));
+}
 
+function fileName($myModel, $id) {
 
+    $row = $myModel->get(
+        array(
+            "id" => $id
+        )
+    );
+
+    return $row->img_url;
 }

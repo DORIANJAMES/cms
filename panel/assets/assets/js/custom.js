@@ -145,30 +145,33 @@ $(document).ready(function () {
     var uploadSection = Dropzone.forElement("#dropzone");
 
     uploadSection.on("complete", function(){
+        $("#dropzone").on("complete", "#dropzone", function(){
+            
+            var $data_url = $("#dropzone").attr("data-url");
 
-        var $data_url = $("#dropzone").attr("data-url");
+            $.post($data_url, {}, function($response){
+                $(".image_list_container").html($response);
 
-        $.post($data_url, {}, function($response){
-            $(".image_list_container").html($response);
+                // Switchery yüklemesi yapılıyor.
+                $('[data-switchery]').each(function (){
+                    var $this = $(this),
+                        color = $this.attr('data-color') || '#188ae2',
+                        jackColor = $this.attr('data-jackColor') || '#ffffff',
+                        size = $this .attr('data-size') || 'default'
 
-            // Switchery yüklemesi yapılıyor.
-            $('[data-switchery]').each(function (){
-                var $this = $(this),
-                    color = $this.attr('data-color') || '#188ae2',
-                    jackColor = $this.attr('data-jackColor') || '#ffffff',
-                    size = $this .attr('data-size') || 'default'
-
-                new Switchery(this, {
-                    color: color,
-                    size: size,
-                    jackColor: jackColor
+                    new Switchery(this, {
+                        color: color,
+                        size: size,
+                        jackColor: jackColor
+                    });
                 });
+
+                $(".sortable-aside").sortable();
+                $(".sortable").sortable();
+
             });
-
-            $(".sortable-aside").sortable();
-            $(".sortable").sortable();
-
         });
+
     });
     // Dropzone üzerinde resim yükleme işlemi tamamladığında çalışacak olan kodların bitişi.
 
