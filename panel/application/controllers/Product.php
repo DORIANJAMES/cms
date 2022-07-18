@@ -209,6 +209,11 @@ class Product extends CI_Controller
 
     public function imageDelete($id, $parent_id)
     {
+        $filename = $this->product_image_model->get(
+          array(
+              "id" => $id
+          )
+        );
 
         $delete = $this->product_image_model->delete(
             array(
@@ -218,6 +223,7 @@ class Product extends CI_Controller
 
         // TODO Alert Sistemi Eklenecek...
         if ($delete) {
+            unlink("uploads/{$this->viewFolder}/$filename->img_url");
             redirect(base_url("product/image_form/".$parent_id));
         } else {
             redirect(base_url("product/image_form/".$parent_id));

@@ -11,9 +11,7 @@ $(document).ready(function () {
 
 
     $(".remove-btn").click(function () {
-
         var $data_url = $(this).data("url");
-
         swal({
             title: 'Emin misiniz?',
             text: "Bu işlemi geri alamayacaksınız!",
@@ -166,6 +164,10 @@ $(document).ready(function () {
                     jackColor: jackColor
                 });
             });
+
+            $(".sortable-aside").sortable();
+            $(".sortable").sortable();
+
         });
     });
     // Dropzone üzerinde resim yükleme işlemi tamamladığında çalışacak olan kodların bitişi.
