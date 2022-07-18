@@ -47,7 +47,7 @@
                     </td>
                     <td class="text-center">
                         <button
-                                data-url="<?php echo base_url("product_image/delete/$image->id"); ?>"
+                                data-url="<?php echo base_url("product/imageDelete/$image->id/$image->product_id"); ?>"
                                 class="btn btn-sm btn-danger btn-outline remove-btn btn-block">
                             <i class="fa fa-trash"></i> Sil
                         </button>
