@@ -9,12 +9,10 @@ function convertToSEO($text){
 }
 
 function fileName($myModel, $id) {
-
     $row = $myModel->get(
         array(
             "id" => $id
         )
     );
-
     return $row->img_url;
 }

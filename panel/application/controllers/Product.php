@@ -76,12 +76,21 @@ class Product extends CI_Controller
 
             // TODO Alert sistemi eklenecek...
             if ($insert) {
+                $alert = array(
+                    "title" => "Tebrikler",
+                    "text" => "Ekleme işlemi başarılı bir şekilde gerçekleştirilmiştir.",
+                    "type" => "success"
+                );
 
-                redirect(base_url("product"));
             } else {
-
-                redirect(base_url("product"));
+                $alert = array(
+                    "title" => "Opps!",
+                    "text" => "Ekleme işlemi ne yazık ki tamamlanamadı. Yeniden deneyiniz ya da sistem yöneticinize başvurunuz!",
+                    "type" => "error"
+                );
             }
+            $this->session->set_flashdata("alert", $alert);
+            redirect(base_url("product"));
         } else {
 
             $viewData = new stdClass();
@@ -157,12 +166,21 @@ class Product extends CI_Controller
 
             // TODO Alert sistemi eklenecek...
             if ($update) {
+                $alert = array(
+                    "title" => "Tebrikler!",
+                    "text" => "Düzenleme işlemi başarılı bir şekilde gerçekleştirilmiştir.",
+                    "type" => "success"
+                );
 
-                redirect(base_url("product"));
             } else {
-
-                redirect(base_url("product"));
+                $alert = array(
+                    "title" => "Oppss!",
+                    "text" => "Düzenleme işlemi ne yazık ki tamamlanamadı. Yeniden deneyiniz ya da sistem yöneticinize başvurunuz!",
+                    "type" => "error"
+                );
             }
+            $this->session->set_flashdata("alert", $alert);
+            redirect(base_url("product"));
         } else {
 
             $viewData = new stdClass();
@@ -192,7 +210,6 @@ class Product extends CI_Controller
 
     public function delete($id)
     {
-
         $delete = $this->product_model->delete(
             array(
                 "id"    => $id
@@ -201,10 +218,21 @@ class Product extends CI_Controller
 
         // TODO Alert Sistemi Eklenecek...
         if ($delete) {
-            redirect(base_url("product"));
+            $alert = array(
+                "title" => "Tebrikler",
+                "text" => "Silme işlemi başarılı bir şekilde gerçekleştirilmiştir.",
+                "type" => "success"
+            );
+
         } else {
-            redirect(base_url("product"));
+            $alert = array(
+                "title" => "Oppss!",
+                "text" => "Silme işlemi ne yazık ki tamamlanamadı. Yeniden deneyiniz ya da sistem yöneticinize başvurunuz!",
+                "type" => "error"
+            );
         }
+        $this->session->set_flashdata("alert", $alert);
+        redirect(base_url("product"));
     }
 
     public function imageDelete($id, $parent_id)
@@ -227,10 +255,20 @@ class Product extends CI_Controller
         // TODO Alert Sistemi Eklenecek...
         if ($delete) {
             unlink("uploads/{$this->viewFolder}/$fileName");
-            redirect(base_url("product/image_form/".$parent_id));
+            $alert = array(
+              "title" => "Tebrikler!",
+              "text" => "Resim, başarı ile sistemden silinmiştir.",
+              "type" => "success"
+            );
         } else {
-            redirect(base_url("product/image_form/".$parent_id));
+            $alert = array(
+                "title" => "Tebrikler!",
+                "text" => "Resim, başarı ile sistemden silinmiştir.",
+                "type" => "success"
+            );
         }
+        $this->session->sub_flashdata("alert", $alert);
+        redirect(base_url("product/image_form/".$parent_id));
     }
 
     public function isActiveSetter($id)
@@ -245,7 +283,6 @@ class Product extends CI_Controller
                 array(
                     "isActive" => $isActive
                 )
-
             );
         }
     }
