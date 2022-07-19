@@ -5,10 +5,10 @@
         </div>
     <?php } else { ?>
 
-        <table class="table table-hover table-bordered">
+        <table class="table table-hover table-striped">
             <thead>
-                <th><i class="fa fa-reorder"></i></th>
-                <th class="w100 text-center">#id</th>
+                <th class="reorder"><i class="fa fa-reorder"></i></th>
+                <th class="w30 text-center">#id</th>
                 <th class="w100 text-center">Görsel</th>
                 <th class="text-center">Resim Adı</th>
                 <th class="w100 text-center">Durumu</th>
@@ -21,7 +21,7 @@
             <?php foreach ($item_images as $image) { ?>
 
                 <tr id="ord-<?php echo $image->id; ?> ">
-                    <td><i class="fa fa-reorder"></i></td>
+                    <td class="reorder"><i class="fa fa-reorder"></i></td>
                     <td class="text-center">#<?php echo $image->id ?> </td>
                     <td class="text-center"><img class="img-responsive img-circle w30" src="<?php echo base_url("uploads/{$viewFolder}/".$image->img_url) ?> " alt="<?php echo $image->img_url; ?> "></td>
                     <td class="text-center"><?php echo $image->img_url ?> </td>

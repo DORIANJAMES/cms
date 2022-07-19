@@ -7,9 +7,6 @@ $(document).ready(function () {
     // Block End.
 
 
-
-
-
     $(".image_list_container, .content-container").on("click", ".remove-btn", function () {
         var $data_url = $(this).data("url");
         swal({
@@ -29,7 +26,7 @@ $(document).ready(function () {
         });
     });
 
-    $(".isActive").change(function () {
+    $(".image_list_container, .content-container").on("change", ".isActive", function () {
 
         var $data = $(this).prop("checked");
         var $data_url = $(this).data("url");
