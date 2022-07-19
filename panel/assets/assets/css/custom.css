@@ -25,5 +25,5 @@ tr {
 }
 
 .sortable:hover{
-    cursor: hand !important;
+    cursor: move !important;
 }
