@@ -43,9 +43,9 @@
                                 <td><?php echo $item->news_type; ?></td>
                                 <td>
                                     <?php
-                                    if (!empty($item->img_url)) {
+                                    if ($item->news_type == "image") {
                                         echo $item->img_url;
-                                    } elseif (!empty($item->video_url)){
+                                    } elseif ($item->news_type == "video"){
                                         echo $item->video_url;
                                     }
                                     ?>

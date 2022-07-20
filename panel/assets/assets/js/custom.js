@@ -170,4 +170,5 @@ $(document).ready(function () {
     });
     // Dropzone üzerinde resim yükleme işlemi tamamladığında çalışacak olan kodların bitişi.
 
+
 });

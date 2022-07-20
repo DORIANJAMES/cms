@@ -29,12 +29,38 @@
                             <small class="pull-right input-form-error"> <?php echo form_error("rank"); ?></small>
                         <?php } ?>
                     </div>
+
                     <div class="form-group">
-                        <label>Durum</label>
+                        <label for="control-demo-5" class="">Haberin Türü</label>
+                        <div id="control-demo-5" class="">
+                            <select class="form-control news_type_select" name="news_type">
+                                <option value="image">Resim</option>
+                                <option value="video">Video</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group image_upload_container">
+                        <label>Görsel Seçiniz</label>
+                        <input type="file" class="form-control" name="img_url">
+                    </div>
+
+                    <div class="form-group video_url_container">
+                        <label>Video URL</label>
+                        <input class="form-control" placeholder="Video bağlantısını bu alandan ekleyebilirsiniz" name="video_url">
+                        <?php if (isset($form_error)) { ?>
+                            <small class="pull-right input-form-error"> <?php echo form_error("title"); ?></small>
+                        <?php } ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="">Durum</label>
+                        <div class="">
                         <select class="form-control" name="isActive" id="">
                             <option value="1">Aktif</option>
                             <option value="0">Pasif</option>
                         </select>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-md btn-outline btn-sm">Kaydet</button>
