@@ -27,3 +27,7 @@ tr {
 .sortable:hover{
     cursor: move !important;
 }
+
+.video_url_container{
+    display: none;
+}
