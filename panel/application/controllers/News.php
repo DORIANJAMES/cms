@@ -97,16 +97,47 @@ class News extends CI_Controller
 
         if ($validate) {
 
-            $insert = $this->news_model->add(
-                array(
-                    "title"         => $this->input->post("title"),
-                    "description"   => $this->input->post("description"),
-                    "url"           => convertToSEO($this->input->post("title")),
-                    "rank"          => $this->input->post("rank"),
-                    "isActive"      => $this->input->post("isActive"),
-                    "createdAt"     => date("Y-m-d H:i:s")
-                )
-            );
+            if ($news_type == "image") {
+                $file_name = pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
+                $config["allowed_types"] = "png|jpeg|jpg|gif";
+                $config["upload_path"] = "uploads/$this->viewFolder/";
+                $config["file_name"] = $file_name;
+
+                $this->load->library("upload", $config);
+
+                $upload = $this->upload->do_upload("img_url");
+                if ($upload) $img_url = $this->upload->data("file_name");
+
+                $insert = $this->news_model->add(
+                    array(
+                        "title"         => $this->input->post("title"),
+                        "description"   => $this->input->post("description"),
+                        "url"           => convertToSEO($this->input->post("title")),
+                        "rank"          => $this->input->post("rank"),
+                        "news_type"     => $this->input->post("news_type"),
+                        "img_url"       => $img_url,
+                        "isActive"      => $this->input->post("isActive"),
+                        "createdAt"     => date("Y-m-d H:i:s")
+                    )
+                );
+            } elseif ($news_type == "video") {
+                $insert = $this->news_model->add(
+                    array(
+                        "title"         => $this->input->post("title"),
+                        "description"   => $this->input->post("description"),
+                        "url"           => convertToSEO($this->input->post("title")),
+                        "rank"          => $this->input->post("rank"),
+                        "news_type"     => $this->input->post("news_type"),
+                        "video_url"     => $this->input->post("video_url"),
+                        "isActive"      => $this->input->post("isActive"),
+                        "createdAt"     => date("Y-m-d H:i:s")
+                    )
+                );
+            }
+
+
+
+
 
             // TODO Alert sistemi eklendi...
             if ($insert) {
