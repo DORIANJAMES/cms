@@ -42,15 +42,49 @@ class News extends CI_Controller
 
     public function save()
     {
-
         $this->load->library("form_validation");
+        $news_type = $this->input->post("news_type");
+
+        if ($news_type == "image"){
+
+            // Resim seçilmediğinde çalışacak olan kodların başlangıcı.
+            if ($_FILES["img_url"]["name"] == ""){
+                print_r($_FILES['img_url']);
+                $alert = array(
+                    "title"=>"Opps...!",
+                    "text"=>"Devam edebilmek için bir resim seçmelisiniz.",
+                    "type"=>"error"
+                );
+                $this->session->set_flashdata("alert", $alert);
+                redirect(base_url("news/new_form"));
+            }
+            // Resim seçilmediğinde çalışacak olan kodların bitişi.
+
+
+        } elseif ($news_type == "video"){
+            $this->form_validation->set_rules("video_url", "Video URL", "required|trim");
+            $this->form_validation->set_message(
+                array(
+                    "required"  => "<b>{field}</b> alanı doldurulmalıdır."
+                )
+            );
+            $video_url = $this->input->post("video_url");
+            if (empty($video_url)) {
+                $alert = array(
+                    "title"=>"Opps...!",
+                    "text"=>"Devam edebilmek için bir video seçmelisiniz.",
+                    "type"=>"error"
+                );
+                $this->session->set_flashdata("alert", $alert);
+            }
+        }
 
         // Kurallar yazilir..
         $this->form_validation->set_rules("title", "Başlık", "required|trim");
 
         $this->form_validation->set_message(
             array(
-                "required"  => "<b>{field}</b> alanı doldurulmalıdır"
+                "required"  => "<b>{field}</b> alanı doldurulmalıdır."
             )
         );
 
@@ -74,7 +108,7 @@ class News extends CI_Controller
                 )
             );
 
-            // TODO Alert sistemi eklenecek...
+            // TODO Alert sistemi eklendi...
             if ($insert) {
                 $alert = array(
                     "title" => "Tebrikler",
@@ -99,6 +133,7 @@ class News extends CI_Controller
             $viewData->viewFolder = $this->viewFolder;
             $viewData->subViewFolder = "add";
             $viewData->form_error = true;
+            $viewData->news_type = $news_type;
 
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
@@ -132,7 +167,6 @@ class News extends CI_Controller
 
     public function update($id)
     {
-
         $this->load->library("form_validation");
 
         // Kurallar yazilir..
@@ -197,6 +231,7 @@ class News extends CI_Controller
             $viewData->subViewFolder = "update";
             $viewData->form_error = true;
             $viewData->item = $item;
+
 
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }

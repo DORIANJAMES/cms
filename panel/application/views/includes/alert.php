@@ -15,7 +15,7 @@ if ($alert){
         <script>
             iziToast.error({
                 title: '<?php echo $alert["title"] ?> ',
-                message: '<?php echo $alert["text"] ?> '
+                message: '<?php echo $alert["text"] ?> ',
                 position: 'topCenter'
             });
         </script>
