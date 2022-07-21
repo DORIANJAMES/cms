@@ -162,10 +162,6 @@ class News extends CI_Controller
                 }
             }
 
-
-
-
-
             // TODO Alert sistemi eklendi...
             if ($insert) {
                 $alert = array(
@@ -195,12 +191,10 @@ class News extends CI_Controller
 
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
-
         // Başarılı ise
         // Kayit işlemi baslar
         // Başarısız ise
         // Hata ekranda gösterilir...
-
     }
 
     public function update_form($id)
