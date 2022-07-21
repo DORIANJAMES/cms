@@ -98,7 +98,7 @@ class News extends CI_Controller
             if ($news_type == "image") {
 
                 // Haber türü resim ise aşağıdaki kodlar çalışır.
-                $file_name = pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
+                $file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION));
                 $config["allowed_types"] = "png|jpeg|jpg|gif";
                 $config["upload_path"] = "uploads/$this->viewFolder/";
                 $config["file_name"] = $file_name;
