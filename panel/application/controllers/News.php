@@ -88,16 +88,16 @@ class News extends CI_Controller
             )
         );
 
-        // Form Validation Calistirilir..
-        // TRUE - FALSE
+        // Form Validation Çalıştırılır..
         $validate = $this->form_validation->run();
 
-        // Monitör Askısı
-        // monitor-askisi
 
         if ($validate) {
 
+
             if ($news_type == "image") {
+
+                // Haber türü resim ise aşağıdaki kodlar çalışır.
                 $file_name = pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
                 $config["allowed_types"] = "png|jpeg|jpg|gif";
                 $config["upload_path"] = "uploads/$this->viewFolder/";
@@ -115,24 +115,51 @@ class News extends CI_Controller
                         "url"           => convertToSEO($this->input->post("title")),
                         "rank"          => $this->input->post("rank"),
                         "news_type"     => $this->input->post("news_type"),
-                        "img_url"       => $img_url,
+                        "img_url"       => convertToSEO($img_url),
                         "isActive"      => $this->input->post("isActive"),
                         "createdAt"     => date("Y-m-d H:i:s")
                     )
                 );
             } elseif ($news_type == "video") {
-                $insert = $this->news_model->add(
-                    array(
-                        "title"         => $this->input->post("title"),
-                        "description"   => $this->input->post("description"),
-                        "url"           => convertToSEO($this->input->post("title")),
-                        "rank"          => $this->input->post("rank"),
-                        "news_type"     => $this->input->post("news_type"),
-                        "video_url"     => $this->input->post("video_url"),
-                        "isActive"      => $this->input->post("isActive"),
-                        "createdAt"     => date("Y-m-d H:i:s")
-                    )
-                );
+
+                // Haber türü videolu haber ise aşağıdaki kodlar çalışır.
+                $video_post = $this->input->post("video_url");
+                $video_url = explode("?", $video_post);
+
+
+                // Video YouTube'dan gelen bir video ise aşağıdaki kodlar çalışır.
+                if ($video_url[0] == "https://www.youtube.com/watch") {
+                    $isYouTube = 1;
+                    $insert = $this->news_model->add(
+                        array(
+                            "title" => $this->input->post("title"),
+                            "description"   => $this->input->post("description"),
+                            "url"           => convertToSEO($this->input->post("title")),
+                            "rank"          => $this->input->post("rank"),
+                            "news_type"     => $this->input->post("news_type"),
+                            "video_url"     => $video_url[1],
+                            "isYouTube"     => $isYouTube,
+                            "isActive"      => $this->input->post("isActive"),
+                            "createdAt"     => date("Y-m-d H:i:s")
+                        )
+                    );
+                } else {
+                    // Video YouTube'dan gelen bir video değil ise aşağıdaki kodlar çalışır.
+                    $isYouTube = 0;
+                    $insert = $this->news_model->add(
+                        array(
+                            "title"         => $this->input->post("title"),
+                            "description"   => $this->input->post("description"),
+                            "url"           => convertToSEO($this->input->post("title")),
+                            "rank"          => $this->input->post("rank"),
+                            "news_type"     => $this->input->post("news_type"),
+                            "video_url"     => $video_post,
+                            "isYouTube"     => $isYouTube,
+                            "isActive"      => $this->input->post("isActive"),
+                            "createdAt"     => date("Y-m-d H:i:s")
+                        )
+                    );
+                }
             }
 
 
